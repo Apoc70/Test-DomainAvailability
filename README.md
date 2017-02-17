@@ -1,0 +1,2 @@
+# Test-DomainAvailability
+Test-DomainAvailability
