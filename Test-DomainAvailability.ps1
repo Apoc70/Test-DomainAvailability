@@ -91,7 +91,7 @@ function Test-DomainAvailability {
 
     } 
     else {
-      # We were not ablte to connect to lookup uri. Do wen have an Internet connection?
+      # We were not ablte to connect to lookup uri. Do we have an Internet connection?
 
       Write-Error -Message 'Domain could not be verified. Please check your connectivity to login.microsoftonline.com'
 
