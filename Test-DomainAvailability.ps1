@@ -1,11 +1,11 @@
 function Test-DomainAvailability {
   <#
       .SYNOPSIS
-      Check the availability of a domain in a selected Office 365 region.  
+      Check the availability of a domain in a selected Office 365 region.
 
       .DESCRIPTION
       The script queries the login uri for the selected Office 365 region. The response contains metadata about the domain queried.
-    
+
       If the domain already exists in the specified region the metadata contains information if the domain is verified and/or federated
 
       Load function into your current PowerShell session:
@@ -23,19 +23,17 @@ function Test-DomainAvailability {
       Author: ?
       (Source: https://blogs.technet.microsoft.com/tip_of_the_day/2017/02/16/cloud-tip-of-the-day-use-powershell-to-check-domain-availability-for-office-365-and-azure/)
       Enhancement: Thomas Stensitzki
-	
-      THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE 
+
+      THIS CODE IS MADE AVAILABLE AS IS, WITHOUT WARRANTY OF ANY KIND. THE ENTIRE
       RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
-      Send comments and remarks to: support@granikos.eu
-	
-      Version 1.0, 2017-02-17
+        Version 1.1, 2024-08-20
 
       .LINK
-      http://scripts.Granikos.eu
-    
+      https://scripts.Granikos.eu
+
       .EXAMPLE
-      Test-DomainAvailability -DomainName example.com 
+      Test-DomainAvailability -DomainName example.com
 
       Test domain availability in the default region - Office 365 Global
 
@@ -68,10 +66,10 @@ function Test-DomainAvailability {
 
   # Select Lookup uri
   $LookupUri = $Regions[$LookupRegion]
-  
+
   if($LookupUri -ne '') {
 
-    # 
+    #
     $response = Invoke-WebRequest -Uri ('https://{0}/getuserrealm.srf?login=user@{1}&xml=1' -f $LookupUri, $DomainName)
 
     if($response -and $response.StatusCode -eq 200) {
@@ -89,7 +87,7 @@ function Test-DomainAvailability {
 
       } | Select-Object -Property DomainName, NamespaceType, Details
 
-    } 
+    }
     else {
       # We were not ablte to connect to lookup uri. Do wen have an Internet connection?
 
@@ -99,4 +97,4 @@ function Test-DomainAvailability {
 
   }
 
-} 
+}
